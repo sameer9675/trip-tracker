@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Product from "./Pages/Product";
 import Pricing from "./Pages/Pricing";
 import Homepage from "./Pages/Homepage";
@@ -10,7 +10,7 @@ import Login from "./Pages/Login";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
 import City from "../src/components/City";
-import Form from '../src/components/Form';
+import Form from "../src/components/Form";
 
 const BASE_URL = "http://localhost:8000";
 
@@ -51,9 +51,18 @@ function App() {
            * index route is nothing the default child route we have show  -> like by default it will show
            */}
           <Route path="app" element={<AppLayout />}>
-            <Route
+            {/* <Route
               index
               element={<CityList isLoading={isLoading} cities={cities} />}
+            /> */}
+            <Route
+              index
+              element={
+                <Navigate
+                  replace // replace the current element in the history stack (stack of navigation) -> more declerative way
+                  to="cities"
+                />
+              }
             />
             <Route
               path="cities"
@@ -86,4 +95,10 @@ export default App;
 
 {
   /* <Route index element={<p>List of cities</p>} /> */
+}
+
+{
+  /**
+   * Index and path can not give to same Route
+   */
 }
