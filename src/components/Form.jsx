@@ -1,8 +1,11 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
+/*eslint-disable*/
 
 import { useState } from "react";
 
 import styles from "./Form.module.css";
+import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -17,6 +20,7 @@ function Form() {
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
+  const navigate = useNavigate(); // previously known as useHistory
 
   return (
     <form className={styles.form}>
@@ -49,8 +53,22 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-        <button>Add</button>
-        <button>&larr; Back</button>
+        <Button type="primary">Add</Button>
+        {/**
+         * -1 -> indicate we have go one step back
+         *
+         * event.preventDefault -> its needed because this button is inside the form element -> on button click it will trigger form submitted that cause page to be re leaod
+         *
+         */}
+        <Button
+          type="back"
+          onClick={(event) => {
+            event.preventDefault();
+            navigate(-1);
+          }}
+        >
+          &larr; Back
+        </Button>
       </div>
     </form>
   );

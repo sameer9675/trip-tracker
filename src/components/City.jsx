@@ -1,27 +1,36 @@
+/*eslint-disable*/
+import { useParams, useSearchParams } from "react-router-dom";
 import styles from "./City.module.css";
+// import BackButton from "./BackButton";
 
-const formatDate = (date) =>
-  new Intl.DateTimeFormat("en", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    weekday: "long",
-  }).format(new Date(date));
+// const formatDate = (date) =>
+//   new Intl.DateTimeFormat("en", {
+//     day: "numeric",
+//     month: "long",
+//     year: "numeric",
+//     weekday: "long",
+//   }).format(new Date(date));
 
 function City() {
-  // TEMP DATA
-  const currentCity = {
-    cityName: "Lisbon",
-    emoji: "🇵🇹",
-    date: "2027-10-31T15:59:59.138Z",
-    notes: "My favorite city so far!",
-  };
+  const params = useParams(); // will return the query params
+  const [searchParam, setSearchParams] = useSearchParams(); // will help to access the query string
+  const lat = searchParam.get("lat");
+  const lng = searchParam.get("lng");
 
-  const { cityName, emoji, date, notes } = currentCity;
+  // TEMP DATA
+  // const currentCity = {
+  //   cityName: "Lisbon",
+  //   emoji: "🇵🇹",
+  //   date: "2027-10-31T15:59:59.138Z",
+  //   notes: "My favorite city so far!",
+  // };
+
+  // const { cityName, emoji, date, notes } = currentCity;
 
   return (
     <div className={styles.city}>
-      <div className={styles.row}>
+      City
+      {/* <div className={styles.row}>
         <h6>City name</h6>
         <h3>
           <span>{emoji}</span> {cityName}
@@ -52,8 +61,8 @@ function City() {
       </div>
 
       <div>
-        <ButtonBack />
-      </div>
+        <BackButton />
+      </div> */}
     </div>
   );
 }

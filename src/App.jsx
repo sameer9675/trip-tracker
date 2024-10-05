@@ -9,6 +9,8 @@ import "./index.css";
 import Login from "./Pages/Login";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
+import City from "../src/components/City";
+import Form from '../src/components/Form';
 
 const BASE_URL = "http://localhost:8000";
 
@@ -42,7 +44,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="product" element={<Product />} />
           <Route path="pricing" element={<Pricing />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="login" element={<Login />} />
           {/**
            * Neted route
            *
@@ -57,8 +59,12 @@ function App() {
               path="cities"
               element={<CityList isLoading={isLoading} cities={cities} />}
             />
-            <Route path="countries" element={<CountryList isLoading={isLoading} cities={cities} />} />
-            <Route path="form" element={<p>Form</p>} />
+            <Route path="cities/:id" element={<City />} />
+            <Route
+              path="countries"
+              element={<CountryList isLoading={isLoading} cities={cities} />}
+            />
+            <Route path="form" element={<Form />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
