@@ -1,8 +1,7 @@
-/*eslint-disable*/
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "./City.module.css";
 import BackButton from "./BackButton";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCities } from "../contexts/citiesContext";
 import Spinner from "./Spinner";
 
