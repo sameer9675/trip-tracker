@@ -194,3 +194,9 @@ export { CitiesProvider, useCities };
 // DELETE: Delete data
 // OPTIONS: Retrieve available methods for a resource
 // PATCH: Partially update existing data
+
+/**
+ * As we are dealing with async data ( api call ) that why we did not move api call and all to reducer fxn (as they are pure fxn)
+ * if we do not want to make these thing than move the whole logic in dispatch is good way and only passing the dispatch fxn in value of Context is a good way
+ *
+ */
