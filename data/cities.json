@@ -13,28 +13,28 @@
       "id": 73930385
     },
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
-      "notes": "",
+      "cityName": "Ukhimath",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2024-10-12T08:49:35.609Z",
+      "notes": "Nice place",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
+        "lat": "30.685163937659564",
+        "lng": "79.12353515625001"
       },
-      "id": 17806751
+      "id": 98443198
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
+      "cityName": "Dehra Dun",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2024-10-12T09:33:59.821Z",
+      "notes": "Nice place for tourist",
       "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
+        "lat": "30.323100460201648",
+        "lng": "78.02627563476564"
       },
-      "id": 98443197
+      "id": 98443199
     }
   ]
 }

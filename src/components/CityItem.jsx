@@ -18,7 +18,12 @@ function CityItem({ city }) {
     position: { lat, lng },
   } = city;
 
-  const { currentCity } = useCities();
+  const { currentCity, deleteCity } = useCities();
+
+  function deleteClickHandler(event, cityId) {
+    event.preventDefault(); //needed to stop bubbling phase -> so we do not navigate to this to={`${id}?lat=${lat}&lng=${lng}`} route
+    deleteCity(cityId);
+  }
 
   return (
     <li>
@@ -31,7 +36,12 @@ function CityItem({ city }) {
         <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
-        <button className={styles.deleteBtn}>&times;</button>
+        <button
+          className={styles.deleteBtn}
+          onClick={(event) => deleteClickHandler(event, city.id)}
+        >
+          &times;
+        </button>
       </Link>
     </li>
   );

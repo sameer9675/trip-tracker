@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 
 import styles from "./Form.module.css";
 import Button from "./Button";
-// import { useNavigate } from "react-router-dom";
 import BackButton from "./BackButton";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 import Message from "../components/Message";
 import Spinner from "../components/Spinner";
+import DatePicker from "react-datepicker";
+import { useCities } from "../contexts/citiesContext";
+import { useNavigate } from "react-router-dom";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -24,12 +26,13 @@ function Form() {
   const [lat, lng] = useUrlPosition();
   const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false);
   const [cityName, setCityName] = useState("");
-  const [, setCountry] = useState("");
+  const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
-  // const navigate = useNavigate(); // previously known as useHistory
   const [emoji, setEmoji] = useState("");
   const [geoCodingError, setGeoCodingError] = useState("");
+  const { createCity, isLoading } = useCities();
+  const navigate = useNavigate();
 
   useEffect(
     function () {
@@ -57,13 +60,37 @@ function Form() {
           setIsLoadingGeoCoding(false);
         }
       }
-      fetchCityData();
+      if (lat && lng) {
+        fetchCityData();
+      }
     },
     [lat, lng]
   );
 
+  // this is the event trigger when Add button click (default behaviour of Form element) -> its not calling on back button click because we have done preventDefault in it
+  async function submitHandler(event) {
+    event.preventDefault(); // to avoid page refresh
+
+    if (!cityName || !date) return;
+
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date,
+      notes,
+      position: { lat, lng },
+    };
+    await createCity(newCity); //since createCity is an async fxn -> it will return a promise -> so we can await here -> to use await we have to make submitHandler async
+    navigate("/app/cities");
+  }
+
   if (isLoadingGeoCoding) {
     return <Spinner />;
+  }
+
+  if (!lat && !lng) {
+    return <Message message="Start by clicking somewhere on map" />;
   }
 
   if (geoCodingError) {
@@ -71,7 +98,10 @@ function Form() {
   }
 
   return (
-    <form className={styles.form}>
+    <form
+      className={`${styles.form} ${isLoading ? styles.loading : ""}`}
+      onSubmit={submitHandler}
+    >
       <div className={styles.row}>
         <label htmlFor="cityName">City name</label>
         <input
@@ -84,10 +114,17 @@ function Form() {
 
       <div className={styles.row}>
         <label htmlFor="date">When did you go to {cityName}?</label>
-        <input
+        {/* <input
           id="date"
+          type="date"
           onChange={(e) => setDate(e.target.value)}
           value={date}
+        /> */}
+        <DatePicker
+          id="date"
+          selected={date}
+          onChange={(date) => setDate(date)}
+          dateFormat="dd/MM/yyyy"
         />
       </div>
 

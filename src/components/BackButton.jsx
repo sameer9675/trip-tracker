@@ -2,13 +2,13 @@ import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
 function BackButton() {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // previously used as useHistory
 
   {
     /**
      * -1 -> indicate we have go one step back
      *
-     * event.preventDefault -> its needed because this button is inside the form element -> on button click it will trigger form submitted that cause page to be re leaod
+     * event.preventDefault -> its needed because this button is inside the form element (for Form component) -> on button click it will trigger form submitted that cause page to be re leaod
      *
      */
   }
