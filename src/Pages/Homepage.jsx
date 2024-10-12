@@ -18,7 +18,7 @@ export default function Homepage() {
           you have wandered the world.
         </h2>
         {/** cta in index.css is a global class */}
-        <Link to="/app" className="cta">
+        <Link to="/login" className="cta">
           Start tracking now
         </Link>
       </section>

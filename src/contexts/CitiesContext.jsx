@@ -37,12 +37,14 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         cities: [...state.cities, action.payload],
+        currentCity: action.payload,
       };
     case "city/deleted":
       return {
         ...state,
         isLoading: false,
         cities: state.cities.filter((city) => city.id !== action.payload),
+        currentCity: {},
       };
     case "rejected":
       return {
@@ -73,6 +75,7 @@ function CitiesProvider({ children }) {
         if (!cityData.ok) throw new Error("failing in fetching data");
         const data = await cityData.json();
         dispatch({ type: "cities/loaded", payload: data });
+
         // setCities(data);
       } catch (e) {
         dispatch({
@@ -88,6 +91,8 @@ function CitiesProvider({ children }) {
   }, []);
 
   async function getCity(id) {
+    if (id == currentCity.id) return;
+
     dispatch({ type: "loading" });
     // setIsLoading(true);
     try {
@@ -95,6 +100,7 @@ function CitiesProvider({ children }) {
       if (!cityData.ok) throw new Error("failing in fetching data");
       const data = await cityData.json();
       dispatch({ type: "city/loaded", payload: data });
+
       // setCurrentCity(data);
     } catch (e) {
       dispatch({

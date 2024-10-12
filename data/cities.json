@@ -1,40 +1,40 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
+      "cityName": "Karnaprayag",
+      "country": "India",
+      "emoji": "🇮🇳",
+      "date": "2024-10-12T09:51:19.107Z",
+      "notes": "Nice city",
+      "position": {
+        "lat": "30.29701788337205",
+        "lng": "79.34326171875001"
+      },
+      "id": 1
+    },
+    {
+      "cityName": "Herrera del Duque",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2024-10-12T09:53:04.061Z",
+      "notes": "",
+      "position": {
+        "lat": "39.2832938689385",
+        "lng": "-5.009765625000001"
+      },
+      "id": 2
+    },
+    {
+      "cityName": "Meda",
       "country": "Portugal",
       "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
+      "date": "2024-10-12T09:53:07.941Z",
+      "notes": "",
       "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
+        "lat": "40.863679665481676",
+        "lng": "-7.27294921875"
       },
-      "id": 73930385
-    },
-    {
-      "cityName": "Ukhimath",
-      "country": "India",
-      "emoji": "🇮🇳",
-      "date": "2024-10-12T08:49:35.609Z",
-      "notes": "Nice place",
-      "position": {
-        "lat": "30.685163937659564",
-        "lng": "79.12353515625001"
-      },
-      "id": 98443198
-    },
-    {
-      "cityName": "Dehra Dun",
-      "country": "India",
-      "emoji": "🇮🇳",
-      "date": "2024-10-12T09:33:59.821Z",
-      "notes": "Nice place for tourist",
-      "position": {
-        "lat": "30.323100460201648",
-        "lng": "78.02627563476564"
-      },
-      "id": 98443199
+      "id": 3
     }
   ]
 }

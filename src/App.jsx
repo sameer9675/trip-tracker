@@ -11,46 +11,57 @@ import CountryList from "./components/CountryList";
 import City from "../src/components/City";
 import Form from "../src/components/Form";
 import { CitiesProvider } from "./contexts/citiesContext";
+import { FakeAuthContext } from "./contexts/FakeAuthContext";
+import ProtectedRoute from "./Pages/ProtectedRoute";
 
 function App() {
   return (
     <>
       {/* <h1>Hello Router!</h1> */}
-      <CitiesProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="product" element={<Product />} />
-            <Route path="pricing" element={<Pricing />} />
-            <Route path="login" element={<Login />} />
-            {/**
-             * Nested route
-             *
-             * index route is nothing the default child route we have show  -> like by default it will show
-             */}
-            <Route path="app" element={<AppLayout />}>
-              {/* <Route
-              index
-              element={<CityList isLoading={isLoading} cities={cities} />}
-            /> */}
+      <FakeAuthContext>
+        <CitiesProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="product" element={<Product />} />
+              <Route path="pricing" element={<Pricing />} />
+              <Route path="login" element={<Login />} />
+              {/**
+               * Nested route
+               *
+               * index route is nothing the default child route we have show  -> like by default it will show
+               */}
               <Route
-                index
+                path="app"
                 element={
-                  <Navigate
-                    replace // replace the current element in the history stack (stack of navigation) -> more declerative way
-                    to="cities"
-                  />
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
                 }
-              />
-              <Route path="cities" element={<CityList />} />
-              <Route path="cities/:id" element={<City />} />
-              <Route path="countries" element={<CountryList />} />
-              <Route path="form" element={<Form />} />
-            </Route>
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </CitiesProvider>
+              >
+                {/* <Route
+                  index
+                  element={<CityList isLoading={isLoading} cities={cities} />}
+                /> */}
+                <Route
+                  index
+                  element={
+                    <Navigate
+                      replace // replace the current element in the history stack (stack of navigation) -> more declerative way
+                      to="cities"
+                    />
+                  }
+                />
+                <Route path="cities" element={<CityList />} />
+                <Route path="cities/:id" element={<City />} />
+                <Route path="countries" element={<CountryList />} />
+                <Route path="form" element={<Form />} />
+              </Route>
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </CitiesProvider>
+      </FakeAuthContext>
     </>
   );
 }
